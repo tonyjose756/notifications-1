@@ -51,7 +51,7 @@ function createDialog() {
 function dialogDismissed(buttonIndex) {
 	
 	if(buttonIndex==1) {
-       new Notification({content: title, message1});
+       new Notification({ title: title, message: message1});
     }
    	else if(buttonIndex==2)   {
         new Toast({content: 'It is rather boring.', duration: 3000});
@@ -64,7 +64,7 @@ function dialogDismissed(buttonIndex) {
    
 function createNotification(title, message1) {
         		
-	//
+	//          
     //generate a time to post notification
     //
     var currentTime = new Date().getTime(); //current time
