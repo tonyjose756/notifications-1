@@ -3,7 +3,7 @@ var notification_count=0;
 $(document).on('pageinit', function() {
 
 	$('#messageButton').on('click', function() {
-		createMessage();
+		createMessage('An example message.', 3000);
 	});
 	
 	$('#dialogButton').on('click', function() {
@@ -12,7 +12,7 @@ $(document).on('pageinit', function() {
 
 
 	$('#notificationButton').on('click', function() {
-		createNotification();
+		createNotification('Hey you', 'if your done, GO BACK TO WORKK' );
 	});
 
 
@@ -24,11 +24,10 @@ function onDeviceReady() {
 }
 
 
-function createMessage(){		
+function createMessage(message, time){		
 	//phoneGap and jQueryMobile do not support toast messages directly
     //so we can add this using toast.js
-    new Toast({content: 'An example message.', duration: 3000}); 
-    new Toast({content: 'An example message gnfjv oj vf jovje rgre verlg erjlel nerjlregdffvf fjv fbfvfj vfj vjfvjl fvfj vfjl vjl fvjl fl vlfj vfvj flj vfl v fvjl fjl vfl v fvfl vfl vfl vlfjv f vflv fl vfl fl; vkjdfj fd  fm f g nr j2.', duration: 3000}); 
+    new Toast({content: message, duration: time}); 
 }
         	
 
@@ -39,10 +38,10 @@ function createDialog() {
       
     
 	navigator.notification.confirm(
-    	'What do you think of this dialog?',  // message
+    	'Hei you hungry?',  // message
         dialogDismissed,         // callback
-        'An example dialog!',            // title
-        ['Awesome!', 'Sucks']                  // buttons
+        'hungry bot!',            // title
+        ['YES', 'NO']                  // buttons
     );
 
 }
@@ -51,14 +50,19 @@ function createDialog() {
         	
 function dialogDismissed(buttonIndex) {
 	
-	if(buttonIndex==1) new Toast({content: "You're easily pleased", duration: 3000});
-   	else if(buttonIndex==2) new Toast({content: 'It is rather boring.', duration: 3000});
+	if(buttonIndex==1) {
+       new Notification({content: title, message1});
+    }
+   	else if(buttonIndex==2)   {
+        new Toast({content: 'It is rather boring.', duration: 3000});
+    }
+    
 
 }
 
    
    
-function createNotification() {
+function createNotification(title, message1) {
         		
 	//
     //generate a time to post notification
@@ -73,7 +77,7 @@ function createNotification() {
     cordova.plugins.notification.local.schedule({ 
     	id: 		1,
         title: 		"Hey you",
-        message: 	"This is an example notification",
+        message: 	"if your done, GO BACK TO WORKK",
         date: 		notificationTime, 
         badge: 		notification_count++
    	});
